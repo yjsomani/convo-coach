@@ -1,0 +1,26 @@
+{
+  "talk_ratio": {
+    "rep_percent": 70,
+    "customer_percent": 30
+  },
+  "filler_words": {
+    "count": 5,
+    "examples": [
+      "you know",
+      "like",
+      "I mean",
+      "okay",
+      "well"
+    ]
+  },
+  "sentiment": {
+    "overall": "positive",
+    "explanation": "The conversation ends with a successful sale and positive reinforcement from both parties, indicating satisfaction."
+  },
+  "coaching_tips": [
+    "Reduce the use of filler words to maintain a more professional tone.",
+    "Engage the customer more by asking open-ended questions to encourage dialogue.",
+    "Be cautious with informal language and expressions that may not resonate well with all customers."
+  ],
+  "summary": "The sales call was largely successful, resulting in a commitment from the customer to invest $4,000. The representative maintained a confident tone and provided compelling information about the stock, although the use of informal language and filler words could be improved."
+}
