@@ -40,7 +40,7 @@ ${transcription}
   });
 
   let raw = response.choices[0].message.content ?? "";
-  raw = raw.trim().replace(/^```json/, "").replace(/```$/, "").trim();
+  raw = raw.trim().replace(/^```[\w]*\n?/, "").replace(/\n?```$/, "").trim();
 
   const data = JSON.parse(raw);
   return NextResponse.json({ transcript: transcription, report: data });
