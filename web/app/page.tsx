@@ -19,14 +19,20 @@ export default function Home() {
 
   async function handleSubmit() {
     if (!file) return;
+
+    if (file.size > 4 * 1024 * 1024) {
+      setError("File too large — please upload a recording under 4MB. For reference, a 3-minute call at standard quality is usually under 3MB.");
+      return;
+    }
+
     setLoading(true);
     setError("");
     setReport(null);
 
-    const form = new FormData();
-    form.append("audio", file);
-
     try {
+      const form = new FormData();
+      form.append("audio", file);
+
       const res = await fetch("/api/analyze", { method: "POST", body: form });
       const data = await res.json();
       if (data.error) throw new Error(data.error);
@@ -59,7 +65,7 @@ export default function Home() {
           id="upload"
         />
         <label htmlFor="upload" className="cursor-pointer">
-          <p className="text-sm text-gray-500">{file ? file.name : "Click to upload an audio file (.mp3, .wav, .m4a)"}</p>
+          <p className="text-sm text-gray-500">{file ? file.name : "Click to upload (.mp3, .wav, .m4a · max 4MB)"}</p>
         </label>
       </div>
 
@@ -78,11 +84,11 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-gray-50 rounded-xl p-4">
               <p className="text-xs text-gray-400 mb-1">Rep talk time</p>
-              <p className="text-2xl font-medium">{report.talk_ratio.rep_percent}%</p>
+              <p className="text-2xl font-medium text-gray-900">{report.talk_ratio.rep_percent}%</p>
             </div>
             <div className="bg-gray-50 rounded-xl p-4">
               <p className="text-xs text-gray-400 mb-1">Filler words</p>
-              <p className="text-2xl font-medium">{report.filler_words.count}</p>
+              <p className="text-2xl font-medium text-gray-900">{report.filler_words.count}</p>
             </div>
           </div>
 
