@@ -42,6 +42,7 @@ ${transcription}
   let raw = response.choices[0].message.content ?? "";
   raw = raw.trim().replace(/^```[\w]*\n?/, "").replace(/\n?```$/, "").trim();
 
+  console.log("RAW LLM OUTPUT:", raw);
   const data = JSON.parse(raw);
   return NextResponse.json({ transcript: transcription, report: data });
 }
