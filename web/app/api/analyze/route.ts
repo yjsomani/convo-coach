@@ -3,6 +3,8 @@ import OpenAI from "openai";
 
 const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
+export const maxDuration = 60;
+
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
   const file = formData.get("audio") as File;
@@ -38,6 +40,7 @@ ${transcription}
     messages: [{ role: "user", content: prompt }],
     temperature: 0.3,
   });
+  
 
   let raw = response.choices[0].message.content ?? "";
   raw = raw.trim().replace(/^```[\w]*\n?/, "").replace(/\n?```$/, "").trim();
